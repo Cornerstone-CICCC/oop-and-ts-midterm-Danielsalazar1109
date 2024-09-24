@@ -1,29 +1,28 @@
 import { Component } from "../common/Component.js";
 
 export class ProductItem extends Component {
-  constructor(props) {
-    super(props);
-    this.handleAddToCart = this.handleAddToCart.bind(this);
-  }
-
-  handleAddToCart() {
-    this.props.cartContext.addItem(this.props.product);
-  }
-
   render() {
-    const productDiv = document.createElement('div');
-    productDiv.className = 'product'; // Asegúrate de agregar una clase para estilos
+    const productElement = document.createElement('div');
+    productElement.classList.add('product-item');
 
-    productDiv.innerHTML = `
-      <img src="${this.props.product.image}" alt="${this.props.product.title}" style="width: 100%; height: auto;">
-      <h2>${this.props.product.title}</h2>
-      <p>Precio: $${this.props.product.price}</p>
-      <button id="add-to-cart-${this.props.product.id}">Agregar al carrito</button>
-    `;
+    const title = document.createElement('h2');
+    title.textContent = this.props.product.title;
+    productElement.appendChild(title);
 
-    // Usa la plantilla de cadena correctamente
-    productDiv.querySelector(`#add-to-cart-${this.props.product.id}`).addEventListener('click', this.handleAddToCart);
+    const price = document.createElement('p');
+    price.textContent = `$${this.props.product.price}`;
+    productElement.appendChild(price);
 
-    return productDiv;
+    const addToCartButton = document.createElement('button');
+    addToCartButton.textContent = 'Add to Cart';
+    
+    // Manejo de agregar el producto al carrito
+    addToCartButton.addEventListener('click', () => {
+      this.props.cartContext.addProduct(this.props.product);
+      alert(`${this.props.product.title} agregado al carrito!`); // Mensaje de confirmación
+    });
+
+    productElement.appendChild(addToCartButton);
+    return productElement;
   }
 }
