@@ -81,9 +81,9 @@ export class Header extends Component {
     const rightImage = document.createElement('img');
     rightImage.src = './public/img/shoppingCart.jpg';  // Cambia por la ruta de tu imagen
     rightImage.alt = 'Imagen derecha';
-    rightImage.style.width = '500px';  // Ajusta el tamaño según sea necesario
-    rightImage.style.height = '500px'; // Hacer la imagen circular
-    rightImage.style.margin = '10px';
+    rightImage.style.width = '450px';  // Ajusta el tamaño según sea necesario
+    rightImage.style.height = '450px'; // Hacer la imagen circular
+    rightImage.style.marginRight = '100px';
 
     // Contenedor de categorías
     const categoriesContainer = document.createElement('div');
