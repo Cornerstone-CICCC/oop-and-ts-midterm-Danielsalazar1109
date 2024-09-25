@@ -20,7 +20,7 @@ export class App extends Component {
   handleCategorySelect = (categoryIndex) => {
     // Asegúrate de que categoryIndex sea el correcto
     // Por ejemplo, si categoryIndex es de 1, 5, 9, 15, realiza la conversión:
-    const mappedCategoryIndex = categoryIndex % 4; // Ajusta para que se convierta en 0, 1, 2, 3
+    const mappedCategoryIndex = Math.floor(categoryIndex / 4); // Ajusta para que se convierta en 0, 1, 2, 3
     if (this.productList) {
       this.productList.resetProducts(); // Restablece los productos antes de aplicar el nuevo filtro
       this.productList.showProductsByCategory(mappedCategoryIndex); // Filtra productos por categoría
@@ -38,11 +38,11 @@ export class App extends Component {
     
     header.mount(appContainer);
 
-    this.productList = new ProductList({ cartContext: this.props.cartContext });
-    this.productList.mount(appContainer);
-
     const cartList = new CartList({ cartContext: this.props.cartContext });
     cartList.mount(appContainer);
+
+    this.productList = new ProductList({ cartContext: this.props.cartContext });
+    this.productList.mount(appContainer);
 
     return appContainer;
   }
