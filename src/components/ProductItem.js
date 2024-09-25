@@ -14,12 +14,19 @@ export class ProductItem extends Component {
             this.modal = this.createModal();
             document.body.appendChild(this.modal);
         }
+
         // Llenar el modal con la información del producto
         this.modal.querySelector('.modal-title').textContent = this.props.product.title;
-        this.modal.querySelector('.modal-price').textContent = `$${this.props.product.price.toFixed(2)}`;
+        this.modal.querySelector('.modal-price').textContent = `CAD $${this.props.product.price.toFixed(2)}`;
         this.modal.querySelector('.modal-description').textContent = this.props.product.description;
         this.modal.querySelector('.modal-image').src = this.props.product.image;
-        this.modal.querySelector('.modal-rating').textContent = `${this.props.product.rating.rate} ⭐`;
+
+        // Generar estrellas según la calificación
+        const rating = this.props.product.rating.rate;
+        const starsContainer = this.modal.querySelector('.modal-rating');
+        starsContainer.innerHTML = ''; // Limpiar cualquier contenido previo
+        this.generateStars(rating, starsContainer);
+
         this.modal.style.display = 'block'; // Mostrar el modal
     }
 
@@ -41,15 +48,11 @@ export class ProductItem extends Component {
         closeButton.innerHTML = '&times;'; // Símbolo de cierre
         closeButton.onclick = this.closeModal; // Evento para cerrar el modal
 
-        // Crear un contenedor para el título
-        const heading = document.createElement('div');
-        heading.classList.add('modal-heading');
-
         const title = document.createElement('h2');
         title.classList.add('modal-title');
 
-        const header = document.createElement('div');
-        header.classList.add('modal-header');
+        const detailsContainer = document.createElement('div');
+        detailsContainer.classList.add('modal-details-container');
 
         const image = document.createElement('img');
         image.classList.add('modal-image');
@@ -60,27 +63,24 @@ export class ProductItem extends Component {
         const price = document.createElement('p');
         price.classList.add('modal-price');
 
-        const description = document.createElement('p');
-        description.classList.add('modal-description');
-
         const rating = document.createElement('p');
         rating.classList.add('modal-rating');
 
-        // Estructura del modal
-        heading.appendChild(title);
-        header.appendChild(image);
+        const description = document.createElement('p');
+        description.classList.add('modal-description');
+
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(title);
+        detailsContainer.appendChild(image);
+        detailsContainer.appendChild(details);
+
         details.appendChild(rating);
         details.appendChild(price);
         details.appendChild(description);
 
-        modalContent.appendChild(closeButton);
-        modalContent.appendChild(heading); // Añadir el encabezado al contenido
-        modalContent.appendChild(header);
-        modalContent.appendChild(details);
-
+        modalContent.appendChild(detailsContainer);
         modal.appendChild(modalContent);
 
-        // Cerrar el modal al hacer clic fuera del contenido
         modal.onclick = (event) => {
             if (event.target === modal) {
                 this.closeModal();
@@ -90,9 +90,52 @@ export class ProductItem extends Component {
         return modal;
     }
 
+    generateStars(rating, container) {
+        const fullStar = './public/img/fullStar.png';  // Ruta de la imagen de estrella completa
+        const halfStar = './public/img/halfStar.png';  // Ruta de la imagen de media estrella
+        const emptyStar = './public/img/emptyStar.png'; // Ruta de la imagen de estrella vacía
+        console.log(fullStar, halfStar, emptyStar);
+        const maxStars = 5;
+    
+        const fullStars = Math.floor(rating); // Número de estrellas completas
+        const halfStars = rating % 1 >= 0.5 ? 1 : 0; // Media estrella si la calificación tiene un decimal >= 0.5
+        const emptyStars = maxStars - fullStars - halfStars; // Estrellas vacías restantes
+    
+        // Añadir las estrellas completas
+        for (let i = 0; i < fullStars; i++) {
+            const img = document.createElement('img');
+            img.src = fullStar;
+            img.alt = 'Full Star';
+            img.classList.add('full-star'); // Clase opcional para estilizar
+            container.appendChild(img);
+        }
+    
+        // Añadir la media estrella si corresponde
+        if (halfStars) {
+            const img = document.createElement('img');
+            img.src = halfStar;
+            img.alt = 'Half Star';
+            img.classList.add('half-star'); // Clase opcional para estilizar
+            container.appendChild(img);
+        }
+    
+        // Añadir las estrellas vacías restantes
+        for (let i = 0; i < emptyStars; i++) {
+            const img = document.createElement('img');
+            img.src = emptyStar;
+            img.alt = 'Empty Star';
+            img.classList.add('empty-star'); // Clase opcional para estilizar
+            container.appendChild(img);
+        }
+    }
+
     render() {
         const productElement = document.createElement('div');
         productElement.classList.add('product-item');
+
+        const image = document.createElement('img');
+        image.src = this.props.product.image;
+        productElement.appendChild(image);
 
         const title = document.createElement('h2');
         title.textContent = this.props.product.title;
@@ -104,20 +147,20 @@ export class ProductItem extends Component {
 
         const addToCartButton = document.createElement('button');
         addToCartButton.textContent = 'Add to Cart';
+        addToCartButton.classList.add('add-cart-button');
 
-        // Manejo de agregar el producto al carrito
         addToCartButton.addEventListener('click', () => {
-            console.log('Adding product:', this.props.product);
             this.props.cartContext.addProduct(this.props.product);
-            alert(`${this.props.product.title} agregado al carrito!`); // Mensaje de confirmación
+            alert(`${this.props.product.title} agregado al carrito!`);
         });
 
         const viewDetailsButton = document.createElement('button');
         viewDetailsButton.textContent = 'View Details';
-        viewDetailsButton.onclick = this.openModal; // Mostrar el modal
+        viewDetailsButton.onclick = this.openModal;
 
         productElement.appendChild(addToCartButton);
-        productElement.appendChild(viewDetailsButton); // Agregar el botón para ver detalles
+        productElement.appendChild(viewDetailsButton);
+
         return productElement;
     }
 }

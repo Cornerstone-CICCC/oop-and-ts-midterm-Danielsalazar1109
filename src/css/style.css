@@ -1,3 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url("../public/img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Centrar la imagen */
+    background-attachment: fixed; /* Fijar la imagen en su posición */
+    padding: 0;
+    margin: 0;
+}
+
+
 .product-list {
     display: grid; /* Usar grid para el layout */
     grid-template-columns: repeat(4, 1fr); /* 3 columnas de igual tamaño */
@@ -11,7 +23,9 @@
     padding: 16px; /* Espaciado interno */
     margin: 16px; /* Espaciado externo entre productos */
     text-align: center; /* Centrar el contenido */
-    background-color: #f9f9f9; /* Color de fondo */
+    background-color:#efefef; /* Color de fondo */
+    background-size: cover;
+    background-repeat: no-repeat;
     transition: box-shadow 0.3s ease; /* Transición suave para el efecto de sombra */
   }
   
@@ -31,24 +45,34 @@
   }
   
   .product-item p {
-    font-size: 1.2em; /* Tamaño de la fuente del precio */
-    color: #333; /* Color del texto del precio */
+    font-size: 2em; /* Tamaño de la fuente del precio */
+    color: #fd0303; /* Color del texto del precio */
     margin: 10px 0; /* Espaciado arriba y abajo del precio */
   }
+
+  h1, h2, .product-item h2, .modal-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700; /* Opción más gruesa para mayor impacto */
+    text-transform: uppercase; /* Si quieres que todos los títulos estén en mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras para darle más estilo */
+}
   
   .product-item button {
     padding: 10px 15px; /* Espaciado interno del botón */
-    background-color: #28a745; /* Color de fondo del botón */
+    background-color: #fd0303; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
     border: none; /* Sin borde */
     border-radius: 4px; /* Bordes redondeados para el botón */
     cursor: pointer; /* Cambiar cursor al pasar por encima */
-    font-size: 1em; /* Tamaño de la fuente del botón */
+    font-size: 1.2em; /* Tamaño de la fuente del botón */
     transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+    margin:20px;
+    height: 15%;
+    font-weight: bold;
   }
   
   .product-item button:hover {
-    background-color: #218838; /* Color de fondo del botón al pasar por encima */
+    background-color: #520101; /* Color de fondo del botón al pasar por encima */
   }
 
   .cart-item {
@@ -74,49 +98,73 @@
 }
 
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Fijo a la pantalla */
-    z-index: 1000; /* Por encima de otros elementos */
-    left: 0;
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fijo para centrar en la pantalla */
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Alto completo */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+    z-index: 1000; /* Asegurarse de que esté en la parte superior */
+    display: flex; /* Usar flexbox para centrar */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
 }
 
 .modal-content {
-    background-color: #fff; /* Fondo blanco */
-    margin: 15% auto; /* Margen superior del 15% y centrado */
+    background-color: white; /* Fondo blanco para el contenido */
     padding: 20px; /* Espaciado interno */
-    border: 1px solid #888; /* Borde */
-    width: 80%; /* Ancho del modal */
-    max-width: 700px; /* Máximo ancho */
+    margin: 5% 20%;
     border-radius: 8px; /* Bordes redondeados */
-    display: flex; /* Usar flexbox para alineación */
-    flex-direction: column; /* Alinear en columna */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    width: 50%;
+    height: auto;
 }
 
-.modal-header {
-    display: flex; /* Usar flexbox para la imagen y el título */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: space-between; /* Espaciado entre la imagen y el título */
+.modal-title {
+    text-align: center; /* Centrar el título */
+    margin-bottom: 50px; /* Espacio debajo del título */
+    font-size:3vh;
 }
 
-.modal-heading {
-    text-align: center; /* Centrar el texto */
-    margin-bottom: 20px; /* Espaciado inferior */
+.modal-details-container {
+    display: flex; /* Usar flexbox para la imagen y detalles */
+    justify-content: space-between; /* Espaciado entre imagen y detalles */
+    align-items: flex-start; /* Alinear al inicio verticalmente */
 }
 
 .modal-image {
-    max-width: 80%; /* Máximo ancho de la imagen */
-    height: 80%; /* Mantener proporciones de la imagen */
+    width:250px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: 350px;
+    margin-right: 50px; /* Espacio entre la imagen y los detalles */
 }
 
 .modal-details {
-    display: flex; /* Usar flexbox para la alineación vertical */
-    flex-direction: column; /* Colocar en una columna */
-    justify-content: start; /* Alinear al inicio */
-    margin-left: 0; /* Eliminar margen izquierdo */
+    display: flex;
+    flex-direction: column; /* Colocar precio y rating uno encima del otro */
+}
+
+.modal-price {
+    font-weight: bold;
+    margin: 5px 0; /* Espacio arriba y abajo del precio */
+    font-size: 5vh;
+    color:#88217f
+}
+
+.modal-rating {
+    margin: 5px 0; /* Espacio arriba y abajo del rating */
+    margin-left: 50px;
+}
+
+.modal-description {
+    margin-top: 20px; /* Espacio arriba de la descripción */
+    clear: both; /* Asegurar que la descripción esté debajo de todo */
+}
+
+.modal-description {
+    text-align: center;
+    font-size: 2.3vh; /* Ajusta el tamaño según el ancho de la ventana */
+    line-height: 1.4; /* Mejora la legibilidad */
 }
 
 .close-button {
@@ -131,4 +179,23 @@
     color: black; /* Color al pasar el mouse */
     text-decoration: none; /* Sin subrayado */
     cursor: pointer; /* Cambiar cursor */
+}
+
+.full-star{
+    width: 80px;
+    height:80px;
+    margin-bottom: 25px;
+    margin-right: 20px;
+}
+
+.empty-star{
+    width: 120px;
+    height:120px;
+    margin:0;
+}
+
+.half-star{
+    width: 50px;
+    height:80px;
+    margin-bottom: 25px;
 }
