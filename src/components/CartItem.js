@@ -63,19 +63,19 @@ export class CartItem extends Component {
     
     // Crear el párrafo para el precio por unidad
     const price = document.createElement('p');
-    price.textContent = `Precio por unidad: $${item.price.toFixed(2)}`; // Muestra el precio del producto
+    price.textContent = `Precio por unidad $${item.price.toFixed(2)}`; // Muestra el precio del producto
     itemDetailsElement.appendChild(price);
     
     // Crear el párrafo para el precio total
     const totalPrice = document.createElement('p');
-    totalPrice.textContent = `Precio Total: $${(item.price * item.quantity).toFixed(2)}`; // Muestra el precio total
+    totalPrice.textContent = `Precio Total $${(item.price * item.quantity).toFixed(2)}`; // Muestra el precio total
     itemDetailsElement.appendChild(totalPrice);
     
     // Agregar el contenedor de detalles al elemento del artículo del carrito
     cartItemElement.appendChild(itemDetailsElement);
     
     const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
+    removeButton.textContent = 'X';
 
     // Manejo de eliminar el item del carrito
     removeButton.onclick = () => {

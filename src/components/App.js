@@ -1,5 +1,6 @@
 import { Component } from "../common/Component.js";
 import { Header } from "./Header.js"; 
+import { Footer } from "./Footer.js";
 import { ProductList } from "./ProductList.js";
 import { CartList } from "./CartList.js";
 
@@ -44,6 +45,9 @@ export class App extends Component {
     this.productList = new ProductList({ cartContext: this.props.cartContext });
     this.productList.mount(appContainer);
 
+    const footer = new Footer();
+    footer.mount(appContainer);
+    
     return appContainer;
   }
 }
