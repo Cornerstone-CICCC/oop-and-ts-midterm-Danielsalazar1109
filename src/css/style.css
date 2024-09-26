@@ -310,7 +310,6 @@ body {
     font-size: 24px; /* Tamaño del texto grande */
     color: white; /* Color del texto blanco */
     margin-left: 10px;
-
   }
 
   .cart-modal {
@@ -543,4 +542,129 @@ body {
       margin: 10px 0; /* Espacio uniforme entre los elementos */
       font-size: 3vh; /* Ajustar tamaño de fuente para dispositivos pequeños */
   }
+  }
+
+  @media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        height: auto; /* Ajusta la altura */
+        padding: 20px;
+        background-image: none;
+        background-color: #fd0303;
+    }
+
+    .header-title {
+        font-size: 5vh;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+  
+  
+    .search-input {
+        width: 100%; 
+        height: 50%;/* Ocupa todo el ancho */
+    }
+
+    .search-button {
+        height: 50%; /* Ocupa todo el ancho */
+    }
+  
+    .categories-container {
+        flex-wrap: wrap; /* Permite que las imágenes se ajusten a varias líneas */
+        justify-content: center; /* Centra las categorías */
+    }
+  
+    .category-image {
+        width: 100px; /* Ajusta el tamaño para pantallas más pequeñas */
+        height: 100px;
+    }
+
+    .product-list {
+      grid-template-columns: repeat(1, 1fr); /* 3 columnas de igual tamaño */
+    }
+
+    .product-item button {
+      height: 8%;
+    }
+
+    .empty-cart {
+      margin-left: 80%;
+      width: 60px;
+      height: 60px;
+    }
+
+    .cart-image{
+      width: 30px;
+      height: 30px;
+      margin-left: 2px;
+      margin-right: 0;
+    }
+
+  .total-items{
+    font-size: 18px;
+  }
+
+    .modal-details-container {
+      flex-direction: column; /* Cambiar a columna */
+      align-items: center; /* Centrar los elementos */
+      text-align: center; /* Centrar texto dentro de la columna */
+  }
+
+  .modal-image {
+      width: 100px; /* Hacer que la imagen ocupe todo el ancho disponible */
+      height: 100px; /* Mantener la relación de aspecto */
+      margin: 0 0 20px 0; /* Espacio debajo de la imagen */
+  }
+
+  .modal-details {
+      width: 100%; /* Hacer que los detalles ocupen todo el ancho */
+  }
+
+  .modal-price, .modal-rating, .modal-description {
+      margin: 10px 0; /* Espacio uniforme entre los elementos */
+      font-size: 3vh; /* Ajustar tamaño de fuente para dispositivos pequeños */
+  }
+
+  .item-details p {
+    display: none;
+}
+
+.cart-item h3 {
+ font-size:2vh;
+}
+
+.cart-item button {
+  height:30px;
+}
+
+.cart-item img{
+  width:30px;
+  height: 30px;
+}
+
+.full-star{
+  width: 20px;
+  height:20px;
+  margin-bottom: 25px;
+  margin-right: 10px;
+}
+
+.empty-star{
+  width: 30px;
+  height:30px;
+  margin-bottom:20px;
+  margin-left: 5px;
+}
+
+.half-star{
+  width: 10px;
+  height:20px;
+  margin-bottom: 25px;
+}
+
+.modal-description{
+  font-size: 1.5vh;
+}
+
+
   }
