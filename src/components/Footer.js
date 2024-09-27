@@ -7,21 +7,21 @@ export class Footer extends Component {
     footerElement.style.color = 'white';
     footerElement.style.padding = '30px';
     footerElement.style.textAlign = 'center';
-    footerElement.style.display = 'flex';  // Flexbox para alinear elementos
-    footerElement.style.alignItems = 'center';  // Alinear verticalmente
-    footerElement.style.justifyContent = 'center';  // Centrar horizontalmente
+    footerElement.style.display = 'flex'; 
+    footerElement.style.alignItems = 'center';  
+    footerElement.style.justifyContent = 'center'; 
 
     const footerText = document.createElement('p');
     footerText.textContent = '© 2024 Walfart. All rights reserved.';
-    footerText.style.fontSize='3vh'; // Margen entre el texto y la imagen
+    footerText.style.fontSize='3vh';
 
 
     const footerImg = document.createElement('img');
-    footerImg.src = './public/img/logo.png';  // Cambia la ruta a tu imagen
+    footerImg.src = './public/img/logo.png';  
     footerImg.alt = 'Footer Logo';
-    footerImg.style.width = '100px';  // Ajusta el tamaño si es necesario
+    footerImg.style.width = '100px'; 
     footerImg.style.height = '100px';
-    footerImg.style.marginRight = '50px';  // Margen entre la imagen y el texto
+    footerImg.style.marginRight = '50px'; 
 
     footerElement.appendChild(footerImg);
     footerElement.appendChild(footerText);

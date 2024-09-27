@@ -6,7 +6,6 @@ export class Header extends Component {
     this.props = props;
     this.searchTerm = '';
 
-    // Vincula los métodos
     this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
@@ -19,7 +18,6 @@ export class Header extends Component {
     const headerElement = document.createElement('header');
     headerElement.classList.add('header');
 
-    // Contenedor del texto y del buscador
     const leftContainer = document.createElement('div');
     leftContainer.classList.add('header-left-container');
 
@@ -50,7 +48,6 @@ export class Header extends Component {
     leftContainer.appendChild(titleElement2);
     leftContainer.appendChild(formElement);
 
-    // Contenedor de categorías
     const categoriesContainer = document.createElement('div');
     categoriesContainer.classList.add('categories-container');
 
@@ -61,7 +58,6 @@ export class Header extends Component {
       { name: "Women's Clothing", start: 15, end: 20, img: './public/img/womanClothing.jpg' }
     ];
 
-    // Crear los botones de categorías
     categories.forEach(category => {
       const categoryButton = document.createElement('div');
       categoryButton.classList.add('category-button');
@@ -82,8 +78,7 @@ export class Header extends Component {
 
     leftContainer.appendChild(categoriesContainer);
 
-    // Añadir ambos contenedores al header
-    headerElement.appendChild(leftContainer); // Texto y buscador
+    headerElement.appendChild(leftContainer); 
 
     return headerElement;
   }

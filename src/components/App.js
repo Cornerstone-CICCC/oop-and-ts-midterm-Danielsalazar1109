@@ -10,21 +10,18 @@ export class App extends Component {
     this.productList = new ProductList({ cartContext: this.cartContext });
   }
 
-  // Maneja la búsqueda por título
   handleSearch = (searchTerm) => {
     if (this.productList) {
-      this.productList.filterProducts(searchTerm); // Filtrar por término de búsqueda
+      this.productList.filterProducts(searchTerm); 
     }
   };
 
-  // Maneja la selección de categoría por rango
+
   handleCategorySelect = (categoryIndex) => {
-    // Asegúrate de que categoryIndex sea el correcto
-    // Por ejemplo, si categoryIndex es de 1, 5, 9, 15, realiza la conversión:
-    const mappedCategoryIndex = Math.floor(categoryIndex / 4); // Ajusta para que se convierta en 0, 1, 2, 3
+    const mappedCategoryIndex = Math.floor(categoryIndex / 4); 
     if (this.productList) {
-      this.productList.resetProducts(); // Restablece los productos antes de aplicar el nuevo filtro
-      this.productList.showProductsByCategory(mappedCategoryIndex); // Filtra productos por categoría
+      this.productList.resetProducts(); 
+      this.productList.showProductsByCategory(mappedCategoryIndex);
     }
   };
 
@@ -34,7 +31,7 @@ export class App extends Component {
 
     const header = new Header({
       onSearch: this.handleSearch,
-      onCategorySelect: this.handleCategorySelect // Pasar el método para seleccionar la categoría
+      onCategorySelect: this.handleCategorySelect
     });
     
     header.mount(appContainer);
@@ -47,7 +44,7 @@ export class App extends Component {
 
     const footer = new Footer();
     footer.mount(appContainer);
-    
+
     return appContainer;
   }
 }

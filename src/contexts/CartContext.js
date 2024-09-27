@@ -14,7 +14,7 @@ export class CartContext {
       this.cart.push({ ...product, quantity: 1 });
     }
     this.updateTotals();
-    this.notifyObservers(); // Notifica a los observadores
+    this.notifyObservers(); 
   }
 
   updateQuantity(id, newQuantity) {
@@ -22,14 +22,14 @@ export class CartContext {
     if (product) {
       product.quantity = newQuantity;
       this.updateTotals();
-      this.notifyObservers(); // Notifica a los observadores
+      this.notifyObservers(); 
     }
   }
 
   removeProduct(id) {
     this.cart = this.cart.filter(item => item.id !== id);
     this.updateTotals();
-    this.notifyObservers(); // Notifica a los observadores
+    this.notifyObservers(); 
   }
 
   updateTotals() {
@@ -37,7 +37,6 @@ export class CartContext {
     this.totalPrice = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     console.log("Total items:", this.totalItems);
     console.log("Total price:", this.totalPrice);
-    // No necesitas notificar aquí, ya lo haces después
   }
 
   addObserver(observer) {
@@ -49,10 +48,10 @@ export class CartContext {
   }
 
   getTotalItems() {
-    return this.totalItems; // Retorna el total ya calculado
+    return this.totalItems;
   }
 
   getTotalPrice() {
-    return this.totalPrice; // Retorna el precio total ya calculado
+    return this.totalPrice; 
   }
 }
